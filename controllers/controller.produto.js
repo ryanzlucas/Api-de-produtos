@@ -6,19 +6,15 @@ class produtoController{
         return res.json(produtos);
     }
     async inserirProduto(req, res) {   
-         const { produtonome, produtovalor } = req.body; 
-         const novoProduto = await produtoService.inserirProdutoService(produtonome, produtovalor);
+         const novoProduto = await produtoService.inserirProdutoService(req.body);
          return res.json(novoProduto);
 }
-    async deletarProduto(req,res){
-        const {id} = req.params;
-        const deletarProduto = await produtoService.deletarProdutoService(id);
+    async deletarProdutos(req,res){
+        const deletarProduto = await produtoService.deletarProdutoService(req.params);
         return res.json(deletarProduto);
     }
     async editarProduto(req,res){
-        const {id} = req.params;
-        const {produtonome,produtovalor} = req.body;
-        const editarProduto = await produtoService.editarProdutoService(id,produtonome,produtovalor);
+        const editarProduto = await produtoService.editarProdutoService(req.body,req.params);
         return res.json(editarProduto);
 
     }

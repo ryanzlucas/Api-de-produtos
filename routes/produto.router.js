@@ -8,7 +8,7 @@ const routes = Router()
 
 routes.get("/",controllerProduto.verProdutos);
 routes.post("/",controllerProduto.inserirProduto);
-routes.delete("/:id",controllerProduto.deletarProduto);
-routes.put("/:id",controllerProduto.editarProduto);
+routes.delete("/:idproduto",controllerProduto.deletarProdutos);
+routes.put("/:idproduto",controllerProduto.editarProduto);
 
 module.exports = routes

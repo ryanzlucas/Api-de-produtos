@@ -1,17 +1,16 @@
-const mysql = require("mysql2/promise"); // 1. O nome deve ser mysql para bater com a linha abaixo
+const {Sequelize} = require('sequelize');
+require ('dotenv').config()
 
-const conexao = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "produtos"
-});
+const { DB_NAME, DB_HOST, DB_PASSWORD, DB_USER } = process.env
 
-// 2. REMOVIDO: conexao(); 
-// Um Pool não é uma função que se chama assim. Ele já está pronto após o createPool.
 
-// 3. O 'if' direto no pool sempre será verdadeiro. 
-// Para testar a conexão real, usamos um log simples ou uma query de teste.
-console.log("Pool de conexões configurado (MySQL)");
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD,{
+    host: DB_HOST,
+    dialect: 'mysql',
+    logging: false
 
-module.exports = conexao;
+})
+
+
+
+module.exports = sequelize;
